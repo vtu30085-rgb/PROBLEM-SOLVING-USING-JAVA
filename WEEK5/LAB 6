@@ -1,0 +1,57 @@
+import java.util.*;
+
+class Driver {
+    String name;
+    boolean available = true;
+
+    Driver(String name) {
+        this.name = name;
+    }
+}
+
+public class RideSharing {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Driver d1 = new Driver("Arun");
+        Driver d2 = new Driver("Kumar");
+
+        System.out.println("=== Ride Sharing Platform ===");
+
+        System.out.print("Enter passenger name: ");
+        String passenger = sc.nextLine();
+
+        System.out.print("Enter pickup: ");
+        String pickup = sc.nextLine();
+
+        System.out.print("Enter destination: ");
+        String destination = sc.nextLine();
+
+        Driver driver = d1.available ? d1 : d2;
+
+        if (driver.available) {
+            driver.available = false;
+
+            System.out.println("\nRide Booked Successfully!");
+            System.out.println("Passenger: " + passenger);
+            System.out.println("Driver: " + driver.name);
+            System.out.println("Pickup: " + pickup);
+            System.out.println("Destination: " + destination);
+        } else {
+            System.out.println("No drivers available!");
+        }
+
+        sc.close();
+    }
+}
+=== Ride Sharing Platform ===
+Enter passenger name: Jhansi
+Enter pickup: Ambattur
+Enter destination: Chennai
+
+Ride Booked Successfully!
+Passenger: Jhansi
+Driver: Arun
+Pickup: Ambattur
+Destination: Chennai
