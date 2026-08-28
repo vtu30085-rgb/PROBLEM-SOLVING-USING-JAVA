@@ -1,0 +1,39 @@
+import java.util.*;
+
+class Main {
+
+    public static int alternatingCharacters(String s) {
+        int count = 0;
+
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        while (n-- > 0) {
+            String s = sc.next();
+            System.out.println(alternatingCharacters(s));
+        }
+    }
+}
+5
+AAAA
+BBBBB
+ABABABAB
+BABABA
+AAABBB
+3
+4
+0
+0
+4
