@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Result {
+
+    public static List<Integer> maxSubarray(List<Integer> arr) {
+
+        int current = arr.get(0);
+        int maxSubarray = arr.get(0);
+
+        int maxSubsequence = arr.get(0);
+
+        for (int i = 1; i < arr.size(); i++) {
+
+            int num = arr.get(i);
+
+            // Maximum subarray
+            current = Math.max(num, current + num);
+            maxSubarray = Math.max(maxSubarray, current);
+
+            // Maximum subsequence
+            if (num > 0) {
+                maxSubsequence += num;
+            }
+        }
+
+        // If all numbers are negative
+        if (maxSubsequence < 0) {
+            maxSubsequence = Collections.max(arr);
+        }
+
+        return Arrays.asList(maxSubarray, maxSubsequence);
+    }
+}
+2
+4
+1 2 3 4
+6
+2 -1 2 3 4 -5
+10 10
+10 11
