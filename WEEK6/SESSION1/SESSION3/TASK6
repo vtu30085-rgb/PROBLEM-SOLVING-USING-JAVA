@@ -1,0 +1,57 @@
+import java.util.*;
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+
+        List<Integer> result = new ArrayList<>();
+
+        if (s.length() < p.length()) {
+            return result;
+        }
+
+        int[] freqP = new int[26];
+        int[] freqWindow = new int[26];
+
+        // Frequency of characters in p
+        for (char c : p.toCharArray()) {
+            freqP[c - 'a']++;
+        }
+
+        int windowSize = p.length();
+
+        // Create the first window
+        for (int i = 0; i < windowSize; i++) {
+            freqWindow[s.charAt(i) - 'a']++;
+        }
+
+        // Check first window
+        if (Arrays.equals(freqP, freqWindow)) {
+            result.add(0);
+        }
+
+        // Slide the window
+        for (int right = windowSize; right < s.length(); right++) {
+
+            // Add new character
+            freqWindow[s.charAt(right) - 'a']++;
+
+            // Remove old character
+            int left = right - windowSize;
+            freqWindow[s.charAt(left) - 'a']--;
+
+            // Check if current window is an anagram
+            if (Arrays.equals(freqP, freqWindow)) {
+                result.add(left + 1);
+            }
+        }
+
+        return result;
+    }
+}
+:::
+
+### Example
+
+```text
+s = "cbaebabacd"
+p = "abc"
